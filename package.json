@@ -12,5 +12,15 @@
   },
   "devDependencies": {
     "live-server": "^1.2.1"
-  }
+  },
+  "main": "index.js",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diegocaminor/javascript-profesional.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diegocaminor/javascript-profesional/issues"
+  },
+  "homepage": "https://github.com/diegocaminor/javascript-profesional#readme"
 }
