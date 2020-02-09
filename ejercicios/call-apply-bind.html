@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <title>
+      Function.prototype.call, Function.prototype.apply, Function.prototype.bind
+    </title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+    <p class="test"><em>clase test</em></p>
+
+      <ul>
+        <li><button class="call-to-action">Aprender</button></li>
+        <li><button class="call-to-action">Aprender Más</button></li>
+        <li><button class="call-to-action">¡Nunca parar de Aprender!</button></li>
+      </ul>
+
+    <script>
+      // Establece `this` usando `call`
+      function saludar() {
+        console.log(`Hola. Soy ${this.name} ${this.apellido}`)
+      }
+
+      const diego = {
+        name: "Diego",
+        apellido: "Camino"
+      }
+      saludar.call(diego);
+
+      // Establece `this` usando `call` y pasar argumentos a la función
+      function caminar(metros, distancia) {
+        console.log(`${this.name} camina ${metros} hacia ${distancia}`)
+      }
+      caminar.call(diego, 400, "norte")
+
+      // Establece `this` usando `apply` y pasar argumentos a la función
+      const valores = [1500, "sur"]
+      caminar.apply(diego, valores)
+
+      /*
+        Call - comma
+        Apply - arreglo
+      */
+
+      // Establecer `this` en una nueva función usando `bind`
+      var DiegoCaminoCaminaRumboFrancia = caminar.bind(diego, 420, "Francia")
+      DiegoCaminoCaminaRumboFrancia();
+
+      var DiegoCaminoCaminaSinRumbo = caminar.bind(diego, 420)
+      DiegoCaminoCaminaSinRumbo("A las Europas")
+
+      // Cuándo es útil usar uno de estos métodos
+      const buttons = document.getElementsByClassName("call-to-action");
+      console.log(buttons);
+      console.log(typeof buttons);
+      // buttons.array.forEach(button => {
+      //   button.onclick = () => alert("Nunca pares de aprender!")
+      // });
+
+      // NodeList se parecen a los arreglos pero no del todo, técnicamente no son lo mismo
+      // NodeList y un array tienen la propiedad length, es suficiente para hacer una de las operaciones del arreglo
+      // Se llamó  esta funcion -> "Array.prototype.forEach" usando buttons como contexto y porque buttons tiene una propiedad
+      // que es buttons.length, con eso le basta a Array.foreach para operar
+      Array.prototype.forEach.call(buttons, button => {
+        button.onclick = () => alert("Nunca pares de aprender!")
+      })
+    </script>
+  </body>
+</html>
