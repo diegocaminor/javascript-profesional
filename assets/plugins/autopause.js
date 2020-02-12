@@ -1,7 +1,8 @@
 class AutoPause {
     constructor() {
-        this.threshold = 0.25
+        this.threshold = 0.35
         this.handlerIntersection = this.handlerIntersection.bind(this)
+        this.handlerVisibilityChange = this.handlerVisibilityChange.bind(this)
     }
     run(player) {
         this.player = player
@@ -10,7 +11,9 @@ class AutoPause {
         })
 
         observer.observe(this.player.media)
+        document.addEventListener("visibilitychange", this.handlerVisibilityChange)
     }
+
     handlerIntersection(entries) { // Cuando IntersectionObserver llame a handlerIntersection le va pasar una lista de entries,
                                    // estos entries son todos los objetos que estamos observando desde observer.observe
                                    // en este caso solo hay y es player.media
@@ -23,6 +26,11 @@ class AutoPause {
             this.player.pause()
         }
         console.log(entry)
+    }
+
+    handlerVisibilityChange() {
+        const isVisible = document.visibilityState === "visible"
+        isVisible? this.player.play() : this.player.pause()
     }
 }
 
