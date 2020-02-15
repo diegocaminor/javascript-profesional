@@ -1,3 +1,4 @@
+import '@babel/polyfill'
 const VERSION = "v1"
 
 self.addEventListener('install', event => {
