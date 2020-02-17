@@ -16,7 +16,9 @@
     "typescript": "^3.7.5"
   },
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@diegocaminor/mediaplayer": "^1.0.0"
+  },
   "browserlist": [
     "last 1 Chrome version"
   ],
